@@ -75,5 +75,7 @@ class CustomFormPageTest extends SapphireTest {
 		$this->assertEquals($required->getRequired()[0], 'MyRequiredField');
 	}
 
+	// TODO: test for not existing Field, html tags and comments
+
 
 }

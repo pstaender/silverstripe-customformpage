@@ -9,6 +9,7 @@ class CustomFormPage extends Page {
 		'FromEmail'                     => 'Varchar(500)',
 		'MessageIfSubmissionSuccessful' => 'Text',
 		'MessageIfSubmissionFailed'     => 'Text',
+		'DisplayResetButton'            => 'Boolean',
 	];
 
 	private static $has_many = [
@@ -28,6 +29,7 @@ class CustomFormPage extends Page {
 		$tabNameSubmissions = _t('CustomFormPage.TabSubmissions', 'Submissions');
 		$fields->addFieldsToTab('Root.' . $tabNameForm, [
 			TextareaField::create('FormDescription', _t('CustomFormPage.FormDescription', 'Form template'))->setRows(50),
+			CheckboxField::create('DisplayResetButton', _t('CustomFormPage.DisplayResetButton', 'Display reset button')),
 		]);
 		$fields->addFieldsToTab('Root.' . $tabNameOnSubmission, [
 			TextField::create('EmailSubjectInternal', _t('CustomFormPage.EmailSubjectInternal', 'Internal email subject')),

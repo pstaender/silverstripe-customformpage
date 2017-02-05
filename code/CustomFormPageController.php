@@ -11,12 +11,13 @@ class CustomFormPage_Controller extends Page_Controller {
 		if ($formFields) {
 			$fields = $formFields['fields'];
 			$required = $formFields['required'];
-			$submit = FormAction::create('doSubmitForm', _t('ContactFormPage.Submit', 'Submit'));
-			$reset = ResetFormAction::create('Reset', _t('ContactFormPage.Reset', 'Reset'));
-			$actions = FieldList::create(
-				$reset,
-				$submit
-			);
+			$submit = FormAction::create('doSubmitForm', _t('CustomFormPage.Submit', 'Submit'));
+
+			$actions = FieldList::create();
+			if ($this->dataRecord->DisplayResetButton) {
+				$actions->push(ResetFormAction::create('Reset', _t('CustomFormPage.Reset', 'Reset')));
+			}
+			$actions->push($submit);
 			$form = Form::create(
 				$this,
 				'Form',
@@ -57,7 +58,7 @@ class CustomFormPage_Controller extends Page_Controller {
 				->setSubject($subject)
 				->setTemplate('InternalSubmissionEmail')
 				->populateTemplate(new ArrayData([
-					'Submission' => $submission
+					'Submission' => $submission,
 				]));
 
 			$submission->SendToEmail = $to;
@@ -67,8 +68,7 @@ class CustomFormPage_Controller extends Page_Controller {
 
 		if ($submission->IsSended && $this->dataRecord->MessageIfSubmissionSuccessful) {
 			$form->sessionMessage($this->dataRecord->MessageIfSubmissionSuccessful, 'good');
-		}
-		else if ($this->SendToEmailInternal && !$submission->IsSended) {
+		} else if ($this->SendToEmailInternal && !$submission->IsSended) {
 			$form->sessionMessage($this->MessageIfSubmissionFailed ? $this->MessageIfSubmissionFailed : _t('CustomFormPage.MessageOnSendingFailed', 'There was a problem submitting your data. Please get in touch with us via email.'), 'bad');
 		}
 		return $submission;

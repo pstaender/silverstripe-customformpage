@@ -15,6 +15,7 @@ de:
     MessageIfSubmissionFailed: Das Formular konnte nicht versendet werden. Bitte wenden Sie sich direkt per E-Mail an uns.
     Submit: Abschicken
     Reset: Zurücksetzen
+    DisplayResetButton: "'Zurücksetzen' Button anzeigen"
   CustomFormPageSubmission:
     SINGULARNAME: Formularseiteneinrichung
     PLURALNAME: Formularseiteneinrichungen

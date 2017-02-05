@@ -1,5 +1,6 @@
 <h1>New $Submission.Page.Title form submission</h1>
-<h2><% if $Submission.Data.Name %> by $Submission.Data.Name<% end_if %><% if $Submission.Data.Email %> from $Submission.Data.Email<% end_if %></h2>
+<h2><% if $Submission.Data.Name %> by $Submission.Data.Name<% end_if %><% if $Submission.Data.Email %>
+    from $Submission.Data.Email<% end_if %></h2>
 <h3>Received on $Submission.Created.Nice</h3>
 
 <p>
