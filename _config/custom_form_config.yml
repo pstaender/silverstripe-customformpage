@@ -1,0 +1,5 @@
+CustomFormPageSubmission:
+  excludeParameters:
+    - SecurityID
+    - action_doSubmitForm
+    - url

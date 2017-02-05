@@ -1,0 +1,8 @@
+CustomFormPage:
+  empty:
+    Title: My Form
+  someFields:
+    Title: My Form
+    FormDescription: >
+      {{ MyField | Description | Text }}
+      {{ MyRequiredField * | Some Description | Dropdown | {"option1": "value1", "option2": "value2"} }}

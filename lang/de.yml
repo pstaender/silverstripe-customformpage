@@ -1,0 +1,26 @@
+de:
+  CustomFormPage:
+    SINGULARNAME: Dynamische Formularseite
+    PLURALNAME: Dynamische Formularseiten
+    TabForm: Formular
+    TabOnSubmission: Abschicken
+    TabSubmissions: Einsendungen
+    FormDescription: Formular Vorlage
+    EmailSubjectInternal: E-Mail Betreff (intern)
+    SendToEmailInternal: Verschicke E-Mail nach intern
+    EmailSubjectExternal: E-Mail Betreff (extern)
+    FromEmail: Absender E-Mail
+    PageOnSuccessID: Zeige folgende Seite nach Abschicken des Formulars Absender
+    MessageIfSubmissionSuccessful: Formular Statusnachricht nach Formularabsendung
+    MessageIfSubmissionFailed: Das Formular konnte nicht versendet werden. Bitte wenden Sie sich direkt per E-Mail an uns.
+    Submit: Abschicken
+    Reset: Zurücksetzen
+  CustomFormPageSubmission:
+    SINGULARNAME: Formularseiteneinrichung
+    PLURALNAME: Formularseiteneinrichungen
+    db_IsSended: E-Mail wurde versendet
+    db_SendToEmail: E-Mail
+    db_SubmittedData: Versendete Daten
+    has_one_Page: Verknüpfte Seite
+
+    
