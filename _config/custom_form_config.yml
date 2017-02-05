@@ -3,3 +3,4 @@ CustomFormPageSubmission:
     - SecurityID
     - action_doSubmitForm
     - url
+    - g-recaptcha-response
