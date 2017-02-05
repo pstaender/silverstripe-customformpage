@@ -1,5 +1,7 @@
 # Custom Forms with SilverStripe
 
+[![Build Status](https://secure.travis-ci.org/pstaender/silverstripe-customformpage.svg?branch=master)](http://travis-ci.org/pstaender/silverstripe-customformpage)
+
 Define you custom form fields in your created `CustomFormPage` with this straight forward syntax:
 
 ```
@@ -8,11 +10,11 @@ Define you custom form fields in your created `CustomFormPage` with this straigh
     {{ Captcha |  | Recaptcha }}
 ```
 
-You can list as many form fields as you like.
+You can use as many form fields as you like.
 
 ## Arguments
 
-The following arguments are listed separated by `|` in each `{{ }}` form field block (sequence is *not* arbitrary):
+The following arguments are listed separated by `|` in each `{{ }}` form field block (sequence of arguments is *not* arbitrary):
 
   1. Name: String as CamelCase describing the name of your field; e.g.: `Email`, `FirstName` …
     * the field is required, if ends with `*`; e.g.: `Email *`
@@ -22,7 +24,7 @@ The following arguments are listed separated by `|` in each `{{ }}` form field b
     * optional
     * must be JSON
     * required for DropDownField for instance
-    
+
 ## License
 
 (C) 2017 by Philipp Staender, MIT Licence
