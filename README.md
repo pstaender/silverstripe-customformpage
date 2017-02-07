@@ -25,9 +25,9 @@ The following arguments are listed separated by `|` in each `{{ }}` form field b
     * must be JSON
     * required for DropDownField for instance
 
-## Advanced Definitions
+## Comments and HTML tags
 
-You can use comments `#` and using html tags, which will be converted to `LiteralFields`:
+You can use comments `#` and using html tags. HTML tags will be converted to SilverStripe LiteralFields:
 
 ```
     # My advanced Poll Form Desctiption
@@ -40,7 +40,7 @@ You can use comments `#` and using html tags, which will be converted to `Litera
 
 ## Exclude Fields in form submission
 
-You can exclude explicitly fields to be written in the Submission. Just define in your config:
+You can explicitly prevent fields to be written in the submission. Just define them in your config:
 
 ```yml
 CustomFormPageSubmission:
