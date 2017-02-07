@@ -7,28 +7,7 @@ class CustomFormPage_Controller extends Page_Controller {
 	];
 
 	function Form() {
-		$formFields = $this->dataRecord->FormFields();
-		if ($formFields) {
-			$fields = $formFields['fields'];
-			$required = $formFields['required'];
-			$submit = FormAction::create('doSubmitForm', _t('CustomFormPage.Submit', 'Submit'));
-
-			$actions = FieldList::create();
-			if ($this->dataRecord->DisplayResetButton) {
-				$actions->push(ResetFormAction::create('Reset', _t('CustomFormPage.Reset', 'Reset')));
-			}
-			$actions->push($submit);
-			$form = Form::create(
-				$this,
-				'Form',
-				FieldList::create($fields),
-				$actions
-			);
-			if (sizeof($required) > 0) {
-				$form->setValidator($required);
-			}
-			return $form;
-		}
+		return $this->dataRecord->CustomForm();
 	}
 
 

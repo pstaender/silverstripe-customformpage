@@ -25,6 +25,17 @@ The following arguments are listed separated by `|` in each `{{ }}` form field b
     * must be JSON
     * required for DropDownField for instance
 
+## Usage in Templates
+
+You can access via `$Form` if you are on a `CustomFormPage` or via `$CustomForm`:
+
+```erb
+  <% with $MyCustomFormPage %>
+    <h1>$Title</h1>
+    $CustomForm
+  <% end_with %>
+```
+
 ## Comments and HTML tags
 
 You can use comments `#` and using html tags. HTML tags will be converted to SilverStripe LiteralFields:
