@@ -25,6 +25,30 @@ The following arguments are listed separated by `|` in each `{{ }}` form field b
     * must be JSON
     * required for DropDownField for instance
 
+## Advanced Definitions
+
+You can use comments `#` and using html tags, which will be converted to `LiteralFields`:
+
+```
+    # My advanced Poll Form Desctiption
+    {{ Email * | Your eMail (required): | Email }}
+    <hr />
+    <h2>Additional Information</h2>
+    # Description of something
+    {{ Age | Your age: | Dropdown | { "Under20": "younger or just 20", "Over20": "older than 20" } }}
+```
+
+## Exclude Fields in form submission
+
+You can exclude explicitly fields to be written in the Submission. Just define in your config:
+
+```yml
+CustomFormPageSubmission:
+  excludeParameters:
+    - Foo
+    - Bar
+```
+
 ## License
 
 (C) 2017 by Philipp Staender, MIT Licence

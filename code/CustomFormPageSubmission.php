@@ -29,10 +29,20 @@ class CustomFormPageSubmission extends DataObject {
 
 	private static $default_sort = "\"ID\" DESC";
 
-	function SerializeData($data) {
-		foreach ($this->config()->excludeParameters as $exclude) {
-			if (isset($data[$exclude])) unset($data[$exclude]);
+	function addAllowedFormData($data) {
+		#{{ Captcha |  | Recaptcha }}
+		$excluded = $this->config()->excludeParameters ? $this->config()->excludeParameters : [];
+		$allowedKeys = $this->Page()->formFieldsFromDescription()['keys'];
+		$filteredData = [];
+		foreach($allowedKeys as $key) {
+			if (!in_array($key, $excluded)) {
+				$filteredData[$key] = $data[$key];
+			}
 		}
+		$this->SerializeData($filteredData);
+	}
+
+	function SerializeData($data) {
 		$this->SubmittedData = json_encode($data, JSON_PRETTY_PRINT);
 	}
 

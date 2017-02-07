@@ -44,7 +44,7 @@ class CustomFormPage_Controller extends Page_Controller {
 	private function addFormSubmission($data, Form $form) {
 		$submission = CustomFormPageSubmission::create();
 		$submission->PageID = $this->dataRecord->ID;
-		$submission->SerializeData($data);
+		$submission->addAllowedFormData($data);
 		$submission->write();
 
 		if ($this->SendToEmailInternal) {

@@ -49,7 +49,7 @@ class CustomFormPage extends Page {
 
 	function FormFields() {
 		if ($this->FormDescription) {
-			$fields = $this->formFieldsFromDescription($this->FormDescription);
+			$fields = $this->formFieldsFromDescription();
 			return [
 				'fields'   => $fields['fields'],
 				'required' => $fields['required'],
@@ -62,27 +62,57 @@ class CustomFormPage extends Page {
 		}
 	}
 
-	private function formFieldsFromDescription($description) {
-		$formFields = null;
-		$requiredFields = null;
-		if (preg_match_all("/{{(.+?)}}/", $description, $fields)) {
-			$formFields = [];
-			$requiredFields = [];
-			foreach ($fields[1] as $fieldText) {
-				$parts = $this->extractParts($fieldText);
-				$key = $this->extractKeyFromParts($parts);
-				if ($isRequiredKey = $this->requiredFieldKey($key)) {
-					$requiredFields[] = $key = $isRequiredKey;
-				}
-				if (!$key) {
-					user_error("You have to set a key for each form field, e.g. Name", E_USER_ERROR);
-				}
-				$formFields[] = $this->formFieldsFromParts($key, $parts);
+	private function extractFormDefintionFromLine($line, array &$formFields, array &$requiredFields, array &$keys) {
+			$parts = $this->extractParts($line);
+			$key = $this->extractKeyFromParts($parts);
+			if ($isRequiredKey = $this->requiredFieldKey($key)) {
+				$requiredFields[] = $key = $isRequiredKey;
 			}
+			if (!$key) {
+				user_error("You have to set a key for each form field, e.g. Name", E_USER_ERROR);
+			}
+			$keys[] = $key;
+			$formFields[] = $this->formFieldsFromParts($key, $parts);
+	}
+
+	private static function html_to_form_field($html) {
+		$html = trim(implode("\n", $html));
+		return (strlen($html) > 0) ? LiteralField::create('CustomFormHTMLField'.rand(1,99999), $html) : null;
+	}
+
+	function formFieldsFromDescription() {
+		$description = $this->FormDescription;
+		$formFields = [];
+		$requiredFields = [];
+		$keys = [];
+		$lines = [];
+		$html = [];
+		foreach(explode("\n", $description) as $line) {
+			$lines[] = $line = trim($line);
+			if (preg_match('/^#/', $line)) {
+				// skip comments
+				continue;
+			} elseif (preg_match('/^\<.+?\>$/', $line, $parts)) {
+				// html code
+				$html[] = $line;
+			} else {
+				if (preg_match("/^{{(.+?)}}/", $line, $parts)) {
+					$this->extractFormDefintionFromLine($parts[1], $formFields, $requiredFields, $keys);
+				}
+				if ($literalFormField = self::html_to_form_field($html)) {
+					$formFields[] = $literalFormField;
+					$html = [];
+				}
+			}
+		}
+		if ($literalFormField = self::html_to_form_field($html)) {
+			$formFields[] = $literalFormField;
+			$html = [];
 		}
 		return [
 			'fields'   => $formFields,
 			'required' => $requiredFields ? RequiredFields::create($requiredFields) : null,
+			'keys'      => $keys,
 		];
 	}
 
