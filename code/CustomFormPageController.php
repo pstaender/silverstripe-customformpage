@@ -3,13 +3,12 @@
 class CustomFormPage_Controller extends Page_Controller {
 
 	private static $allowed_actions = [
-		'Form' => true,
+		'CustomForm' => true,
 	];
 
-	function Form() {
-		return $this->dataRecord->CustomForm();
+	function CustomForm() {
+		return $this->dataRecord->CustomForm($this);
 	}
-
 
 	function doSubmitForm($data, Form $form) {
 		$this->addFormSubmission($data, $form);

@@ -63,21 +63,28 @@ class CustomFormPage extends Page {
 	}
 
 	private function extractFormDefintionFromLine($line, array &$formFields, array &$requiredFields, array &$keys) {
-			$parts = $this->extractParts($line);
-			$key = $this->extractKeyFromParts($parts);
-			if ($isRequiredKey = $this->requiredFieldKey($key)) {
-				$requiredFields[] = $key = $isRequiredKey;
+		$parts = $this->extractParts($line);
+		$key = $this->extractKeyFromParts($parts);
+		if ($isRequiredKey = $this->requiredFieldKey($key)) {
+			$requiredFields[] = $key = $isRequiredKey;
+		}
+		if (!preg_match('/^[a-zA-Z0-9\_\-]+$/', $key)) {
+			if (!Director::isLive()) {
+				user_error("Invalid key name '$key', please use alphanumeric latin letters only", E_USER_ERROR);
 			}
-			if (!$key) {
+		} elseif (!$key) {
+			if (!Director::isLive()) {
 				user_error("You have to set a key for each form field, e.g. Name", E_USER_ERROR);
 			}
+		} else {
 			$keys[] = $key;
 			$formFields[] = $this->formFieldsFromParts($key, $parts);
+		}
 	}
 
 	private static function html_to_form_field($html) {
 		$html = trim(implode("\n", $html));
-		return (strlen($html) > 0) ? LiteralField::create('CustomFormHTMLField'.rand(1,99999), $html) : null;
+		return (strlen($html) > 0) ? LiteralField::create('CustomFormHTMLField' . rand(1, 99999), $html) : null;
 	}
 
 	function formFieldsFromDescription() {
@@ -87,7 +94,7 @@ class CustomFormPage extends Page {
 		$keys = [];
 		$lines = [];
 		$html = [];
-		foreach(explode("\n", $description) as $line) {
+		foreach (explode("\n", $description) as $line) {
 			$lines[] = $line = trim($line);
 			if (preg_match('/^#/', $line)) {
 				// skip comments
@@ -112,7 +119,7 @@ class CustomFormPage extends Page {
 		return [
 			'fields'   => $formFields,
 			'required' => $requiredFields ? RequiredFields::create($requiredFields) : null,
-			'keys'      => $keys,
+			'keys'     => $keys,
 		];
 	}
 
@@ -169,7 +176,7 @@ class CustomFormPage extends Page {
 		return $arguments;
 	}
 
-	function CustomForm() {
+	function CustomForm($controller) {
 		$formFields = $this->FormFields();
 		if ($formFields) {
 			$fields = $formFields['fields'];
@@ -182,8 +189,8 @@ class CustomFormPage extends Page {
 			}
 			$actions->push($submit);
 			$form = Form::create(
-				$this,
-				'Form',
+				$controller,
+				'CustomForm',
 				FieldList::create($fields),
 				$actions
 			);
