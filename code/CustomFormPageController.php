@@ -1,10 +1,6 @@
 <?php
-if(class_exists('Page_Controller')) {
-	class CustomFormPageControllerParent extends Page_Controller {}
-} else {
-	class CustomFormPageControllerParent extends PageController {}
-}
-class CustomFormPage_Controller extends CustomFormPageControllerParent {
+
+class CustomFormPage_Controller extends PageController {
 
 	private static $allowed_actions = [
 		'CustomForm' => true,
