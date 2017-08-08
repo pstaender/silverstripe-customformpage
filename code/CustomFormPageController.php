@@ -1,6 +1,10 @@
 <?php
-
-class CustomFormPage_Controller extends Page_Controller {
+if(class_exists('Page_Controller')) {
+	class CustomFormPageControllerParent extends Page_Controller {}
+} else {
+	class CustomFormPageControllerParent extends PageController {}
+}
+class CustomFormPage_Controller extends CustomFormPageControllerParent {
 
 	private static $allowed_actions = [
 		'CustomForm' => true,
@@ -35,7 +39,7 @@ class CustomFormPage_Controller extends Page_Controller {
 				->setTo($to)
 				->setSubject($subject)
 				->setTemplate('InternalSubmissionEmail')
-				->populateTemplate(new ArrayData([
+				->populateTemplate(new \SilverStripe\View\ArrayData([
 					'Submission' => $submission,
 				]));
 

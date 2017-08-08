@@ -1,6 +1,6 @@
 <?php
 
-class CustomFormPageSubmission extends DataObject {
+class CustomFormPageSubmission extends \SilverStripe\ORM\DataObject {
 
 	private static $db = [
 		'SubmittedData' => 'Text',
@@ -20,11 +20,11 @@ class CustomFormPageSubmission extends DataObject {
 	);
 
 	private static $has_one = [
-		'Page' => 'SiteTree',
+		'Page' => \SilverStripe\CMS\Model\SiteTree::class,
 	];
 
 	private static $belongs_to = [
-		'Page' => 'SiteTree',
+		'Page' => \SilverStripe\CMS\Model\SiteTree::class,
 	];
 
 	private static $default_sort = "\"ID\" DESC";
@@ -55,10 +55,10 @@ class CustomFormPageSubmission extends DataObject {
 	}
 
 	function DataAsList() {
-		$data = ArrayList::create();
+		$data = \SilverStripe\ORM\ArrayList::create();
 		if ($this->SubmittedData) {
 			foreach($this->DeserializeData() as $key => $value) {
-				$data->push(ArrayData::create(['Key' => $key, 'Value' => $value]));
+				$data->push(\SilverStripe\View\ArrayData::create(['Key' => $key, 'Value' => $value]));
 			}
 		}
 		return $data;
@@ -69,13 +69,13 @@ class CustomFormPageSubmission extends DataObject {
 		if ($data = $this->DeserializeData()) foreach($data as $key => $value) {
 			$list[] = "<li><strong>" . $key.": </strong><code>".$value."</code></li>";
 		}
-		$html = HTMLText::create();
+		$html = \SilverStripe\ORM\FieldType\DBHTMLText::create();
 		$html->setValue("<ul>".join($list, "\n")."</ul>");
 		return $html;
 	}
 
 	function Data() {
-		return ArrayData::create($this->DeserializeData());
+		return \SilverStripe\View\ArrayData::create($this->DeserializeData());
 	}
 
 }
