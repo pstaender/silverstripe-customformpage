@@ -12,6 +12,7 @@
     "issues": "https://github.com/pstaender/silverstripe-customformpage/issues"
   },
   "require": {
-    "php": ">=5.2.0"
+    "php": ">=5.2.0",
+    "silverstripe/framework": ">=3 && <4"
   }
 }
