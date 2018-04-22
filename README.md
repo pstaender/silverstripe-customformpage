@@ -1,7 +1,5 @@
 # Custom Forms with SilverStripe
 
-[![Build Status](https://secure.travis-ci.org/pstaender/silverstripe-customformpage.svg?branch=master)](http://travis-ci.org/pstaender/silverstripe-customformpage)
-
 Define you custom form fields in your created `CustomFormPage` with this straight forward syntax:
 
 ```
