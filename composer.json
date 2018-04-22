@@ -20,7 +20,7 @@
   },
   "extra": {
     "expose": [
-      "vendor/pstaender/silverstripe-customformpage/images"
+      "images"
     ]
   },
   "require": {
