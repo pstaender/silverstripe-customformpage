@@ -1,7 +1,5 @@
 # Custom Forms with SilverStripe
 
-[![Build Status](https://secure.travis-ci.org/pstaender/silverstripe-customformpage.svg?branch=master)](http://travis-ci.org/pstaender/silverstripe-customformpage)
-
 Define you custom form fields in your created `CustomFormPage` with this straight forward syntax:
 
 ```
@@ -11,6 +9,10 @@ Define you custom form fields in your created `CustomFormPage` with this straigh
 ```
 
 You can use as many form fields as you like.
+
+## Requirements
+
+  * SilverStripe 4+
 
 ## Arguments
 
@@ -59,6 +61,14 @@ CustomFormPageSubmission:
     - Foo
     - Bar
 ```
+
+## Template variables
+
+You can check `$FormWasSuccessfullySended` and `$FormWasSubmitted` in your template.
+
+## Problems
+
+If an `Uncaught Error: Call to a member function setForm() on null (SilverStripe\Forms\FieldList->setForm(SilverStripe\Forms\Form))` occurs, please ensure that you have at least one form field defined ;)
 
 ## License
 

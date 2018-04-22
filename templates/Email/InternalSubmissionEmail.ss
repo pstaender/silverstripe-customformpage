@@ -1,18 +1,21 @@
-<h1>New $Submission.Page.Title form submission</h1>
-<h2><% if $Submission.Data.Name %> by $Submission.Data.Name<% end_if %><% if $Submission.Data.Email %>
-    from $Submission.Data.Email<% end_if %></h2>
-<h3>Received on $Submission.Created.Nice</h3>
-
+<h1>
+    <%t InternalSubmissionEmail.NewSubmissionReceivedOnPage "New {pagetitle} form submission" pagetitle=$Submission.Page.Title %>
+</h1>
+<h2>
+    <%t InternalSubmissionEmail.NewSubmissionReceivedFrom "From {name}<{email}>" name=$Submission.Data.Name email=$Submission.Data.Email %>
+</h2>
+<h3>
+    <%t InternalSubmissionEmail.SubmittedOn "Submitted on {date}" date=$Submission.Created.Nice %>
 <p>
 <% if $Submission.DataAsList %>
     <table>
         <thead>
         <tr>
             <th style="visibility: hidden;">
-                Field
+                <%t InternalSubmissionEmail.Key 'Key' %>
             </th>
             <th style="visibility: hidden;">
-                Value
+                <%t InternalSubmissionEmail.Value 'Value' %>
             </th>
         </tr>
         </thead>

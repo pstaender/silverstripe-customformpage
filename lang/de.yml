@@ -16,6 +16,7 @@ de:
     Submit: Abschicken
     Reset: Zurücksetzen
     DisplayResetButton: "'Zurücksetzen' Button anzeigen"
+    MessageOnSendingFailed: Ihre Anfrage konnte leider nicht versendet werden. Bitte kontaktieren Sie uns direkt per eMail.
   CustomFormPageSubmission:
     SINGULARNAME: Formularseiteneinrichung
     PLURALNAME: Formularseiteneinrichungen
@@ -23,5 +24,11 @@ de:
     db_SendToEmail: E-Mail
     db_SubmittedData: Versendete Daten
     has_one_Page: Verknüpfte Seite
+  InternalSubmissionEmail:
+    NewSubmissionReceivedOnPage: "Neuer Eingang in Formular '{pagetitle}'"
+    NewSubmissionReceivedFrom: "Von {name}<{email}>"
+    SubmittedOn: "Versendet am {date}"
+    Key: Feld
+    Value: Wert
 
     
