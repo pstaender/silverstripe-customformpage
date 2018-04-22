@@ -13,6 +13,6 @@
   },
   "require": {
     "php": ">=5.2.0",
-    "silverstripe/framework": ">=3 && <4"
+    "silverstripe/framework": "^3"
   }
 }
