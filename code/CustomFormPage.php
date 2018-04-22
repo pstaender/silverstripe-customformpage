@@ -198,7 +198,6 @@ class CustomFormPage extends Page
             $actions = \SilverStripe\Forms\FieldList::create();
             if ($this->DisplayResetButton) {
                 $actions->push(\SilverStripe\Forms\FormAction::create()->setAttribute('type', _t('CustomFormPage.Reset', 'Reset')));
-                //$actions->push(ResetFormAction::create('Reset', _t('CustomFormPage.Reset', 'Reset')));
             }
             $actions->push($submit);
             $form = \SilverStripe\Forms\Form::create(
