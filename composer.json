@@ -1,7 +1,7 @@
 {
   "name": "pstaender/silverstripe-customformpage",
   "description": "Define custom form fields via text input in your CMS",
-  "type": "silverstripe-module",
+  "type": "silverstripe-vendormodule",
   "homepage": "https://github.com/pstaender/silverstripe-customformpage",
   "keywords": ["silverstripe", "form", "customize"],
   "license": "MIT",
