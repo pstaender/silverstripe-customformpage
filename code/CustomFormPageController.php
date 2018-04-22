@@ -10,7 +10,7 @@ class CustomFormPage_Controller extends PageController {
 		return $this->dataRecord->CustomForm($this);
 	}
 
-	function doSubmitForm($data, Form $form) {
+	function doSubmitForm($data, SilverStripe\Forms\Form $form) {
 		$this->addFormSubmission($data, $form);
 		if ($this->dataRecord->PageOnSuccessID > 0) {
 			return $this->redirect($this->dataRecord->PageOnSuccess()->Link());
@@ -19,7 +19,7 @@ class CustomFormPage_Controller extends PageController {
 		}
 	}
 
-	private function addFormSubmission($data, Form $form) {
+	private function addFormSubmission($data, SilverStripe\Forms\Form $form) {
 		$submission = CustomFormPageSubmission::create();
 		$submission->PageID = $this->dataRecord->ID;
 		$submission->addAllowedFormData($data);
