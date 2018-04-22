@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Control\Email\Email;
+
 class CustomFormPage_Controller extends PageController {
 
 	private static $allowed_actions = [
