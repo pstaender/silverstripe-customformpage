@@ -64,6 +64,10 @@ CustomFormPageSubmission:
     - Bar
 ```
 
+## Template variables
+
+You can check `$FormWasSuccessfullySended` and `$FormWasSubmitted` in your template.
+
 ## Problems
 
 If an `Uncaught Error: Call to a member function setForm() on null (SilverStripe\Forms\FieldList->setForm(SilverStripe\Forms\Form))` occurs, please ensure that you have at least one form field defined ;)
