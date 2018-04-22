@@ -12,6 +12,10 @@ Define you custom form fields in your created `CustomFormPage` with this straigh
 
 You can use as many form fields as you like.
 
+## Requirements
+
+  * SilverStripe 4+
+
 ## Arguments
 
 The following arguments are listed separated by `|` in each `{{ }}` form field block (sequence of arguments is *not* arbitrary):

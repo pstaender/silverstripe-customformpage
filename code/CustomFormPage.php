@@ -21,7 +21,7 @@ class CustomFormPage extends Page
         'PageOnSuccess' => \SilverStripe\CMS\Model\SiteTree::class,
     ];
 
-    private static $icon = "silverstripe-customformpage/images/list.svg";
+    private static $icon = "vendor/pstaender/silverstripe-customformpage/images/list.svg";
 
     public function getCMSFields()
     {

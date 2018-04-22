@@ -3,15 +3,28 @@
   "description": "Define custom form fields via text input in your CMS",
   "type": "silverstripe-vendormodule",
   "homepage": "https://github.com/pstaender/silverstripe-customformpage",
-  "keywords": ["silverstripe", "form", "customize"],
+  "keywords": [
+    "silverstripe",
+    "form",
+    "customize"
+  ],
   "license": "MIT",
   "authors": [
-    {"name": "Philipp Staender","email": "philipp.staender@gmail.com"}
+    {
+      "name": "Philipp Staender",
+      "email": "philipp.staender@gmail.com"
+    }
   ],
   "support": {
     "issues": "https://github.com/pstaender/silverstripe-customformpage/issues"
   },
+  "extra": {
+    "expose": [
+      "vendor/pstaender/silverstripe-customformpage/images",
+    ]
+  },
   "require": {
-    "php": ">=5.2.0"
+    "php": ">=7.0.0",
+    "silverstripe/framework": ">=4"
   }
 }
