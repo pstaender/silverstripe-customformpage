@@ -25,6 +25,6 @@
   },
   "require": {
     "php": ">=7.0.0",
-    "silverstripe/framework": ">=4"
+    "silverstripe/framework": "^4"
   }
 }
