@@ -28,7 +28,7 @@ class CustomFormPage_Controller extends PageController
         }
     }
 
-    private function addFormSubmission($data, SilverStripe\Forms\Form $form)
+    protected function addFormSubmission($data, SilverStripe\Forms\Form $form)
     {
         $submission = CustomFormPageSubmission::create();
         $submission->PageID = $this->dataRecord->ID;
