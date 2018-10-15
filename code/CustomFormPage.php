@@ -190,14 +190,16 @@ class CustomFormPage extends Page
     public function CustomForm($controller)
     {
         $formFields = $this->FormFields();
-        if ($formFields) {
+        if ($formFields['fields']) {
             $fields = $formFields['fields'];
             $required = $formFields['required'];
             $submit = \SilverStripe\Forms\FormAction::create('doSubmitForm', _t('CustomFormPage.Submit', 'Submit'));
 
             $actions = \SilverStripe\Forms\FieldList::create();
             if ($this->DisplayResetButton) {
-                $actions->push(\SilverStripe\Forms\FormAction::create()->setAttribute('type', _t('CustomFormPage.Reset', 'Reset')));
+                $actions->push(
+                    \SilverStripe\Forms\FormAction::create('')->setAttribute('type', _t('CustomFormPage.Reset', 'Reset'))
+                );
             }
             $actions->push($submit);
             $form = \SilverStripe\Forms\Form::create(
@@ -206,7 +208,7 @@ class CustomFormPage extends Page
                 \SilverStripe\Forms\FieldList::create($fields),
                 $actions
             );
-            if (sizeof($required) > 0) {
+            if ($required) {
                 $form->setValidator($required);
             }
             return $form;

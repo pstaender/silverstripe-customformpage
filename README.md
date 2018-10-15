@@ -29,7 +29,7 @@ The following arguments are listed separated by `|` in each `{{ }}` form field b
 
 ## Usage in Templates
 
-You can access via `$Form` if you are on a `CustomFormPage` or via `$CustomForm`:
+You can access the form via `$CustomForm`:
 
 ```erb
   <% with $MyCustomFormPage %>
@@ -65,10 +65,6 @@ CustomFormPageSubmission:
 ## Template variables
 
 You can check `$FormWasSuccessfullySended` and `$FormWasSubmitted` in your template.
-
-## Problems
-
-If an `Uncaught Error: Call to a member function setForm() on null (SilverStripe\Forms\FieldList->setForm(SilverStripe\Forms\Form))` occurs, please ensure that you have at least one form field defined ;)
 
 ## License
 
