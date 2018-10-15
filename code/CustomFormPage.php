@@ -153,7 +153,17 @@ class CustomFormPage extends Page
         $name = (isset($parts[1]) && ($parts[1])) ? $parts[1] : $parts[0];
         $name = trim($name);
         $formFieldName = (isset($parts[2]) && ($parts[2])) ? $parts[2] : 'Text';
-        $formFieldClassName = '\\SilverStripe\\Forms\\' . trim($formFieldName) . 'Field';
+        $formFieldName = trim($formFieldName);
+        if ($formFieldName[0] !== '\\') {
+            // automatic put into silverstripe form namespace if no absolute namespace is used
+            $formFieldClassName = '\\SilverStripe\\Forms\\' . $formFieldName;
+            preg_match("/Field$/", $formFieldName, $matches);
+            if (sizeof($matches) === 0) {
+                $formFieldClassName .= 'Field';
+            }
+        } else {
+            $formFieldClassName = $formFieldName;
+        }
         $arguments = $this->extractArguments($parts);
         if (class_exists($formFieldClassName)) {
             array_unshift($arguments, $name);
@@ -161,7 +171,7 @@ class CustomFormPage extends Page
             $formField = new $formFieldClassName(...$arguments);
             // TODO: options
         } else {
-            $formField = \SilverStripe\Forms\LiteralField::create('warning_' . $formFieldName, "The class {$formFieldClassName} doesn't exists (given class name: {$formFieldName})");
+            throw new Exception("The class {$formFieldClassName} doesn't exists (given class name: {$formFieldName})");
         }
         return $formField;
     }
@@ -178,7 +188,7 @@ class CustomFormPage extends Page
                 } else if ($argument[0] === '[' && $argument[strlen($argument) - 1] === ']') {
                     $arguments[] = json_decode($argument, true);
                 } else if (is_numeric($argument)) {
-                    $arguments[] = (int) $argument;
+                    $arguments[] = (int)$argument;
                 } else {
                     $arguments[] = $argument;
                 }
