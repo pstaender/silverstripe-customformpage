@@ -38,7 +38,7 @@ class CustomFormPageSubmission extends \SilverStripe\ORM\DataObject
         $filteredData = [];
         foreach ($allowedKeys as $key) {
             if (!in_array($key, $excluded)) {
-                $filteredData[$key] = $data[$key];
+                $filteredData[$key] = $data[$key] ?? null;
             }
         }
         $this->SerializeData($filteredData);
