@@ -79,7 +79,7 @@ class CustomFormPageSubmission extends \SilverStripe\ORM\DataObject
         }
 
         $html = \SilverStripe\ORM\FieldType\DBHTMLText::create();
-        $html->setValue("<ul>" . join($list, "\n") . "</ul>");
+        $html->setValue("<ul>" . join("\n", $list) . "</ul>");
         return $html;
     }
 
